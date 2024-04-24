@@ -122,8 +122,8 @@ code {
 
 @media only screen and (max-width: 600px) {
   .hide-sm {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
   }
 
   .show-sm {

@@ -1,8 +1,8 @@
 import MainNavbar from "../../components/navbar/main-navbar";
-import SignIn from "../../components/signin/sign-in";
-import hero from "../../assets/images/successful-medical-team.jpg"
+import hero from "../../assets/images/successful-medical-team.jpg";
+import RecoverPassword from "../../components/recover-password/recover-password";
 
-const SigninPage = () => {
+const recoverPasswordPage = () => {
   return (
     <div>
       <MainNavbar />
@@ -13,10 +13,7 @@ const SigninPage = () => {
               <div className="card-body">
                 <div className="d-flex flex-column justify-content-between">
                   <div>
-                    <SignIn />
-                  </div>
-                  <div>
-                    <small className="rounded-pill p-3 shadow"> get help, Contact support </small>
+                    <RecoverPassword />
                   </div>
                 </div>
               </div>
@@ -28,8 +25,9 @@ const SigninPage = () => {
         </div>
       </div>
     </div>
-  );
+  )
 
 }
 
-export default SigninPage;
+export default recoverPasswordPage;
+
