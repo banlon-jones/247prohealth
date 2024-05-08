@@ -14,7 +14,7 @@ const RecoverPassword = () => {
     try {
       await resetPassword(email)
       toast.current.show({ severity: 'success', summary: 'Successful', detail: "Email sent " });
-      navigate("/signin")
+      navigate("/authentication")
     } catch (e) {
       console.log(e)
       toast.current.show({ severity: 'error', summary: 'Error resetting password', detail: e.message });

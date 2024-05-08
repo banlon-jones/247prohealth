@@ -30,7 +30,7 @@ const Home = () => {
                 </div>
               </div>
               <div>
-                <Button label="Make an appointment" size="large" />
+                <Button label="Consult a specialist FREE" size="large" />
               </div>
             </div>
             <div>

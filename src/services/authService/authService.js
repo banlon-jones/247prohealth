@@ -1,23 +1,30 @@
-import { getAuth, signInWithEmailAndPassword, sendEmailVerification,sendPasswordResetEmail, signOut, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider
+} from "firebase/auth";
 import app from "../../config/firebaseConfig";
 
-export const getCurrentSignedInUser = () => {
-  const auth = getAuth(app);
-  return auth.currentUser
-}
 
 export const createUserWithPassword = async (email, password) => {
   const auth = getAuth(app);
-  const user = await auth.createUserWithEmailAndPassword(auth, email, password)
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password)
   await sendEmailVerification(auth.currentUser);
-  return user;
+  localStorage.setItem("user", JSON.stringify(userCredential.user))
+  return userCredential.user;
 }
 
 export const signInUserWithPassword = async (email, password) => {
   const auth = getAuth(app);
-  const user =  await signInWithEmailAndPassword(auth, email, password)
-  console.log(user)
-  return user
+  const userCredential =  await signInWithEmailAndPassword(auth, email, password)
+  localStorage.setItem("user", JSON.stringify(userCredential.user))
+  return userCredential.user
 }
 
 export const resetPassword = async (email) => {
@@ -33,12 +40,16 @@ export const logOut = async () => {
 export const logInWithGoogle = async () => {
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider()
-  return await signInWithPopup(auth, provider)
+  const userCredential = await signInWithPopup(auth, provider)
+  localStorage.setItem("user", JSON.stringify(userCredential.user))
+  return userCredential.user
 }
 
 export const logInWithFacebook = async () => {
   const auth = getAuth(app);
   const provider = new FacebookAuthProvider()
-  return await signInWithPopup(auth, provider)
+  const userCredential = await signInWithPopup(auth, provider)
+  localStorage.setItem("user", JSON.stringify(userCredential.user))
+  return userCredential.user
 }
 

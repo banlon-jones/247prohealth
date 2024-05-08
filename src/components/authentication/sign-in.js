@@ -6,9 +6,11 @@ import GoogleAuthButton from "../social-auth-buttons/googleAuthButton";
 import {signInUserWithPassword} from "../../services/authService/authService";
 import {Toast} from "primereact/toast";
 import {useRef} from "react";
+import {useNavigate} from "react-router-dom";
 
 const SignIn = () => {
   const toast = useRef(null);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,6 +18,7 @@ const SignIn = () => {
   const onSubmit = async (data) => {
     try {
       await signInUserWithPassword(data.email, data.password);
+      navigate('/dashboard');
     } catch (e) {
       console.log(e)
       toast.current.show({ severity: 'error', summary: 'Error Login invalid credentials', detail: e.message });

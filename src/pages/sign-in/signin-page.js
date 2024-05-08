@@ -1,5 +1,5 @@
 import MainNavbar from "../../components/navbar/main-navbar";
-import SignIn from "../../components/signin/sign-in";
+import SignIn from "../../components/authentication/sign-in";
 import hero from "../../assets/images/successful-medical-team.jpg"
 
 const SigninPage = () => {

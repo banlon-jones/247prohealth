@@ -18,11 +18,11 @@ const MainNavbar = () => {
       url: '/'
     },
     {
-      label: 'About us',
+      label: 'Register for Medical',
       url: '#'
     },
     {
-      label: 'Contact us',
+      label: 'Contact Us',
       url: "#"
     }
   ];
@@ -39,7 +39,7 @@ const MainNavbar = () => {
             </Button>
           </div>
           <div>
-            <Button label="Get Started" className="mx-2"/>
+            <Button label="Get Started" className="mx-2" onClick={() => navigate("/signup")}/>
             <Button label="Login" onClick={() => navigate("/signin")} outlined/>
           </div>
         </div>
@@ -51,7 +51,7 @@ const MainNavbar = () => {
             <TabMenu model={menuItems} />
           </div>
           <div>
-            <Button label="Get Started" raised className="mx-4"/>
+            <Button label="Sign up" href="/get-started" onClick={() => navigate("/signup")} raised className="mx-4"/>
             <Button label="Login" onClick={() => navigate("/signin")} outlined raised/>
           </div>
         </div>
