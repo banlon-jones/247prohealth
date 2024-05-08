@@ -20,7 +20,6 @@ const SignIn = () => {
       await signInUserWithPassword(data.email, data.password);
       navigate('/dashboard');
     } catch (e) {
-      console.log(e)
       toast.current.show({ severity: 'error', summary: 'Error Login invalid credentials', detail: e.message });
     }
 
