@@ -62,3 +62,10 @@ export const countries = [
   {name: 'India', symbol: 'IN'},
 ]
 
+export const maritalStatus = [
+  {name: 'Divorced'},
+  {name: 'Single'},
+  {name: 'Married'},
+  {name: 'Separate'},
+];
+

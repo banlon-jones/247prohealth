@@ -2,7 +2,7 @@ import {useForm} from "react-hook-form";
 import {InputText} from "primereact/inputtext";
 import {Calendar} from "primereact/calendar";
 import {Button} from "primereact/button";
-import {registerNewDoctor} from "../../services/doctorService/doctorService";
+import {registerNewPersonel} from "../../services/personelService/personelService";
 import {countries} from "../../constants/specialties";
 import {Dropdown} from "primereact/dropdown";
 import {useState} from "react";
@@ -22,7 +22,7 @@ const SignUpBasicInfo = ({stepper}) => {
       }else {
         data = {...data,country: country.name, isPromoter: false, isSpecailist: true}
       }
-      await registerNewDoctor({...data, email: JSON.parse(localStorage.getItem("user")).email})
+      await registerNewPersonel({...data, email: JSON.parse(localStorage.getItem("user")).email})
       stepper.current.nextCallback()
     }catch (e) {
       console.log(e)

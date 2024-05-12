@@ -48,7 +48,7 @@ const DashboardNavBar = () => {
                 <span>
                   <FontAwesomeIcon icon={faUser} />
                 </span>
-                <span className="px-2"> {getAuth(app).currentUser.email} </span>
+                <span className="px-2"> {getAuth(app)?.currentUser?.email} </span>
                 <FontAwesomeIcon icon={faAngleDown} />
               </Button>
             </div>

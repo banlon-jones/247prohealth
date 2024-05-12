@@ -3,7 +3,9 @@ import MainNavbar from "../../components/navbar/main-navbar";
 import heroImg from "../../assets/images/hero-doctor.png"
 import {Button} from "primereact/button";
 import {Tag} from "primereact/tag";
+import {useNavigate} from "react-router-dom";
 const Home = () => {
+  const navigate = useNavigate();
   return(
     <div>
       <MainNavbar />
@@ -30,7 +32,7 @@ const Home = () => {
                 </div>
               </div>
               <div>
-                <Button label="Consult a specialist FREE" size="large" />
+                <Button label="Consult a specialist FREE" size="large" onClick={()=> {navigate("/new-patient/create")}}/>
               </div>
             </div>
             <div>

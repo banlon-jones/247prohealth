@@ -1,9 +1,11 @@
 import { getDoc, getFirestore, updateDoc, doc, setDoc} from "firebase/firestore";
 import app from "../../config/firebaseConfig";
+import {UniqueCharOTP} from "unique-string-generator";
+import {getAuth} from "firebase/auth";
 
 const database = getFirestore(app)
 
-export const registerNewDoctor = async (doctor) => {
+export const registerNewPersonel = async (doctor) => {
   try {
     return await setDoc(doc(database, "doctors", doctor.email), doctor);
   } catch (e) {
@@ -11,7 +13,7 @@ export const registerNewDoctor = async (doctor) => {
   }
 }
 
-export const getDoctorByEmail = async (email) => {
+export const getPersonelByEmail = async (email) => {
     const docSnap = await getDoc(doc(database, "doctors", email));
     if (docSnap.exists()){
       return docSnap.data()
@@ -20,8 +22,19 @@ export const getDoctorByEmail = async (email) => {
     }
 }
 
-export const updateDoctor = async (data, email) => {
+export const updatePersonel = async (data, email) => {
   return await updateDoc(doc(database, "doctors",email), data);
+}
+
+export const getReferralCode = async (personelEmail) => {
+  const personel = await getPersonelByEmail(personelEmail);
+  if (personel?.referralLink) {
+    return personel?.referralLink;
+  } else {
+    const code = UniqueCharOTP(8)
+    await updatePersonel({referralLink: code}, getAuth(app).currentUser?.email);
+    return code;
+  }
 }
 
 /*

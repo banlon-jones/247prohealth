@@ -1,12 +1,14 @@
 import googleLogo from "../../assets/images/google_logo.png";
 import {Button} from "primereact/button";
 import {logInWithGoogle} from "../../services/authService/authService";
+import {useNavigate} from "react-router-dom";
 
 const GoogleAuthButton = () => {
+  const navigate = useNavigate();
   const handleClick = async () => {
     try {
-      const user = await logInWithGoogle()
-      console.log(user)
+      await logInWithGoogle()
+      navigate('/dashboard');
     } catch (e) {
 
     }

@@ -3,7 +3,7 @@ import {Dropdown} from "primereact/dropdown";
 import {MultiSelect} from "primereact/multiselect";
 import {certificates, experienceLevels, specialties} from "../../constants/specialties";
 import {useState} from "react";
-import {updateDoctor} from "../../services/doctorService/doctorService";
+import {updatePersonel} from "../../services/personelService/personelService";
 import {getAuth} from "firebase/auth";
 import app from "../../config/firebaseConfig";
 import {useNavigate} from "react-router-dom";
@@ -21,7 +21,7 @@ const SignUpQualificationForm = () => {
       specialties: specialty.map((item) => item.name)
     }
     //
-    await updateDoctor(data, getAuth(app).currentUser.email);
+    await updatePersonel(data, getAuth(app).currentUser.email);
     navigate("/dashboard");
   }
 
