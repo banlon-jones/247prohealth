@@ -36,10 +36,6 @@ const AddPatientPage = () => {
           country: selectedCountry?.name,
           town: data.town
         },
-        bloodPressure: {
-          systolic: data.systolic,
-          diastolic: data.diastolic
-        },
         createdAt: date.toISOString(),
         referral: ref
       }
@@ -62,6 +58,9 @@ const AddPatientPage = () => {
     <>
       {auth?.currentUser?.email ? <DashboardNavBar /> : <MainNavbar />}
       <div>
+        <h2>
+          Patient Sign Up
+        </h2>
         <div className="py-6 mx-5 text-start">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="my-3">
@@ -94,44 +93,15 @@ const AddPatientPage = () => {
               <small className="text-gray-600"> Enter patients current Address</small>
               <div className="my-3">
                 <label>Country</label>
-                <Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name"
-                          placeholder="Select a City" className="w-full md:w-14rem" />
+                <div>
+                  <Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name"
+                            placeholder="Select a country" className="w-full" />
+                </div>
               </div>
               <div className="my-3">
                 <label>Town</label>
                 <InputText type="text" className="col-12" placeholder="Addrss" {...register("town", {required: true})} />
                 { errors.town && <small className="text-danger">town is Required</small>}
-              </div>
-            </div>
-            <div>
-              <div className="border-1 border-dashed p-4 rounded my-4">
-                <h3>
-                  Patient's Current Vitals
-                </h3>
-                <small className="text-gray-600"> Carefully enter patients currently vitals signs</small>
-                <div className="my-3">
-                  <label> Height (cm) </label>
-                  <InputText type="number" keyfilter="int"  className="col-12" {...register("height", {required: true})} />
-                  { errors.height && <small className="text-danger">height is Required</small>}
-                </div>
-                <div className="mb-3">
-                  <label> Weight (kg)</label>
-                  <InputText type="number" keyfilter="int" className="col-12" {...register("weight", {required: true})} />
-                  { errors.weight && <small className="text-danger">weight is Required</small>}
-                </div>
-                <div>
-                  <h4> Blood Pressure </h4>
-                    <div className="mb-3">
-                      <label> Systolic (mmHg)</label>
-                      <InputText type="number" keyfilter="int" className="col-12" {...register("systolic", {required: true})} />
-                      { errors.systolic && <small className="text-danger">whatsapp contact is Required</small>}
-                    </div>
-                    <div className="mb-3">
-                      <label> Diastolic (mmHg)</label>
-                      <InputText type="number" keyfilter="int" className="col-12" {...register("diastolic", {required: true})} />
-                      { errors.diastolic && <small className="text-danger">whatsapp contact is Required</small>}
-                    </div>
-                </div>
               </div>
             </div>
             <div className="my-3">

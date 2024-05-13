@@ -32,7 +32,7 @@ const Home = () => {
                 </div>
               </div>
               <div>
-                <Button label="Consult a specialist FREE" size="large" onClick={()=> {navigate("/new-patient/create")}}/>
+                <Button label="Consult a Specialist Abroad for FREE" size="large" onClick={()=> {navigate("/new-patient/create")}}/>
               </div>
             </div>
             <div>
