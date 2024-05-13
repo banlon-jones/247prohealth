@@ -39,8 +39,7 @@ const AddPatientPage = () => {
         createdAt: date.toISOString(),
         referral: ref
       }
-      delete patient.systolic
-      delete patient.diastolic
+      console.log(patient)
       delete patient.town
       const docRef = await newPatient(patient);
       setPatientId(docRef.id);
@@ -95,12 +94,12 @@ const AddPatientPage = () => {
                 <label>Country</label>
                 <div>
                   <Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name"
-                            placeholder="Select a country" className="w-full" />
+                            placeholder="Select your country" className="w-full" />
                 </div>
               </div>
               <div className="my-3">
                 <label>Town</label>
-                <InputText type="text" className="col-12" placeholder="Addrss" {...register("town", {required: true})} />
+                <InputText type="text" className="col-12" placeholder="town" {...register("town", {required: true})} />
                 { errors.town && <small className="text-danger">town is Required</small>}
               </div>
             </div>
