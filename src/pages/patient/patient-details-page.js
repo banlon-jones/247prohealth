@@ -11,7 +11,7 @@ const PatientDetailsPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     getPatientDetails()
-  }, [patient_id]);
+  });
 
 
   const getPatientDetails = async () => {
