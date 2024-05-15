@@ -1,7 +1,7 @@
 import DashboardNavBar from "../../components/navbar/dashboard-navbar";
 import PatientCard from "../../components/patients/patient-card";
 import {Button} from "primereact/button";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import {getPatient} from "../../services/patientService/patientService";
 import {useEffect, useState} from "react";
 
