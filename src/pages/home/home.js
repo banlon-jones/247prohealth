@@ -17,10 +17,10 @@ const Home = () => {
                 <Tag className="p-4 text-dark bg-white shadow" rounded>healthier tomorrow starts today</Tag>
               </div>
               <div>
-                <h1>Empowering Health,</h1>
+                <h1>For Health Professionals Promoters & Patients</h1>
               </div>
               <div>
-                <h1>Empowering Lives</h1>
+                <h1>Giving Patients Access to the Best Healthcare Specialists  Worldwide</h1>
               </div>
               <div className="my-6">
                 <div className="border-left-3 border-primary p-3">

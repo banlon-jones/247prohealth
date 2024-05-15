@@ -1,4 +1,4 @@
-import {query, addDoc, collection, getFirestore, where, getDocs} from "firebase/firestore";
+import {query, addDoc, collection, getFirestore, where, getDocs, doc, getDoc} from "firebase/firestore";
 import app from "../../config/firebaseConfig";
 
 const database = getFirestore(app)
@@ -15,4 +15,13 @@ export const personelPatients = async (referralCode) => {
     patients.push({id : doc?.id, ...doc.data()})
   });
   return patients;
+}
+
+export const getPatient = async (patientId) => {
+  const docSnap = await getDoc(doc(database, "patients", patientId));
+  //console.log(docSnap.exists())
+  if (docSnap.exists()) {
+    return docSnap.data();
+  }
+  return null;
 }

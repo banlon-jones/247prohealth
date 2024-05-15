@@ -14,6 +14,7 @@ import imgUrl from "../../assets/images/flat-doc.jpg";
 import {Calendar} from "primereact/calendar";
 import {countries} from "../../constants/specialties";
 import {Dropdown} from "primereact/dropdown";
+import {UniqueCharOTP} from "unique-string-generator";
 
 const AddPatientPage = () => {
   const navigate = useNavigate();
@@ -28,10 +29,12 @@ const AddPatientPage = () => {
     formState: {errors}, reset} = useForm();
 
   const onSubmit = async (data) => {
+    const date = new Date();
+    const dat = new Date(data?.dateOfBirth)
     try {
-      const date = new Date();
       const patient = {
         ...data,
+        dob: dat.toISOString(),
         address: {
           country: selectedCountry?.name,
           town: data.town

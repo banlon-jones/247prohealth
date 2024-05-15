@@ -7,7 +7,8 @@ import RegistrationPage from "../pages/registration/registration-page";
 import SignupPage from "../pages/signup-page/signup-page";
 import {isLoggedIn} from "../guards/auth-guard";
 import DashboardPage from "../pages/dashboard/dashboard-page";
-import AddPatientPage from "../pages/add-patient/add-patient-page";
+import AddPatientPage from "../pages/patient/add-patient-page";
+import PatientDetailsPage from "../pages/patient/patient-details-page";
 const AppRouter = () => {
   return(
     <BrowserRouter>
@@ -19,6 +20,7 @@ const AppRouter = () => {
         <Route path="/get-started" element={ isLoggedIn()? <GetStartPage /> :  <Navigate to="/signin" /> } />
         <Route path="/register/:profession" element={isLoggedIn()? <RegistrationPage /> : <Navigate to="/signin" /> } />
         <Route path="/dashboard" element={isLoggedIn() ? <DashboardPage /> : <Navigate to="/signin"/> } />
+        <Route path="/patient/:patient_id" element={isLoggedIn()? <PatientDetailsPage /> : <Navigate to="/signin" /> } />
         <Route path="/new-patient/:ref" element={<AddPatientPage /> } />
 
       </Routes>
