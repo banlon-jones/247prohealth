@@ -34,12 +34,15 @@ const MainNavbar = () => {
           <div>
             <Toast ref={toast}></Toast>
             <Menu model={menuItems} popup ref={menuLeft} id="popup_menu_left" />
-            <Button text onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup>
-              <FontAwesomeIcon icon={faBars} />
-            </Button>
+            <div className="flex align-items-center">
+              <Button text onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup>
+                <FontAwesomeIcon icon={faBars} />
+              </Button>
+              247<span className="text-primary">PRO</span>HEALTH
+            </div>
           </div>
           <div>
-            <Button label="Get Started" className="mx-2" onClick={() => navigate("/signup")}/>
+            <Button label="Sign Up" className="mx-2" onClick={() => navigate("/signup")}/>
             <Button label="Login" onClick={() => navigate("/signin")} outlined/>
           </div>
         </div>

@@ -42,19 +42,19 @@ const DashboardNavBar = () => {
       <Toast ref={toast}></Toast>
       <div className="hide-md show-sm bg-gray-50 shadow-3">
         <div className="flex flex-row justify-content-between p-3">
-          <div>
+          <div className="flex flex-row align-items-center">
             <Button text aria-controls="popup_menu_left" aria-haspopup>
               <FontAwesomeIcon icon={faBars} />
             </Button>
+            247<span className="text-primary">PRO</span>HEALTH
           </div>
           <div>
             <div>
               <Menu model={menuItems} popup ref={menuLeft} id="popup_menu_left" />
               <Button text className="py-3" onClick={(event) => menuLeft.current.toggle(event)}>
-                <span>
+                <span className="px-3">
                   <FontAwesomeIcon icon={faUser} />
                 </span>
-                <span className="px-2"> {getAuth(app)?.currentUser?.email} </span>
                 <FontAwesomeIcon icon={faAngleDown} />
               </Button>
             </div>
