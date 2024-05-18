@@ -17,6 +17,17 @@ export const personelPatients = async (referralCode) => {
   return patients;
 }
 
+export const getPatientBySpecialist = async (specialist) => {
+  const patients = [];
+  const patientRef = query(collection(database, "patients"));
+  const q = query(patientRef, where('specialists', 'array-contains-any', specialist));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    patients.push({id : doc?.id, ...doc.data()})
+  });
+  return patients;
+}
+
 export const getPatient = async (patientId) => {
   const docSnap = await getDoc(doc(database, "patients", patientId));
   //console.log(docSnap.exists())

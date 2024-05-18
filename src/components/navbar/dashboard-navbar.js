@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import {Toast} from "primereact/toast";
-import {useEffect, useRef} from "react";
+import {useRef} from "react";
 import {Button} from "primereact/button";
 import {Menu} from "primereact/menu";
 import {logOut} from "../../services/authService/authService";
@@ -14,14 +14,10 @@ const DashboardNavBar = () => {
   const navigate = useNavigate();
   const toast = useRef(null);
   const menuLeft = useRef(null);
-  useEffect(() => {
-    return () => {
-      console.log(getAuth(app)?.currentUser?.email)
-    };
-  }, []);
 
   const logout = async () => {
     await logOut();
+    localStorage.removeItem("user")
     navigate("/signin")
   }
 

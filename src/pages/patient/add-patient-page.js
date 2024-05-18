@@ -12,10 +12,12 @@ import React, {useState} from "react";
 import {Dialog} from "primereact/dialog";
 import imgUrl from "../../assets/images/flat-doc.jpg";
 import {Calendar} from "primereact/calendar";
-import {countries} from "../../constants/specialties";
+import {countries, specialties} from "../../constants/specialties";
 import {Dropdown} from "primereact/dropdown";
+import {MultiSelect} from "primereact/multiselect";
 
 const AddPatientPage = () => {
+  const [specialist, setSpecialist] = useState(null);
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState();
@@ -33,6 +35,8 @@ const AddPatientPage = () => {
     try {
       const patient = {
         ...data,
+        specialists: specialist.map((item) => item.name),
+        status: 'awaiting',
         dob: dat.toISOString(),
         address: {
           country: selectedCountry?.name,
@@ -111,6 +115,12 @@ const AddPatientPage = () => {
                 <InputTextarea className="col-12" {...register("description", {required: true})} rows={5} cols={30} />
               </div>
               { errors.description && <small className="text-danger">address is Required</small>}
+            </div>
+            <div className="py-2">
+              <label> Consult Specialist <small>(3 max)</small></label>
+              <MultiSelect value={specialist} onChange={(e) => setSpecialist(e.value)} options={specialties} optionLabel="name" display="chip"
+                           placeholder="Select your specialties" maxSelectedLabels={3} className="w-full" filter />
+
             </div>
             <div>
               <Button label="Save and Continues" type="submit" />

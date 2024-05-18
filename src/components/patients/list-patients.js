@@ -5,7 +5,6 @@ import { Tag } from "primereact/tag"
 
 
 const ListPatients = ({patients}) => {
-  console.log(patients);
   return(
     <>
       <div>
@@ -43,7 +42,7 @@ const ListPatients = ({patients}) => {
                 <small className="text-gray-700">City/Town</small>
               </div>
               <div>
-                {patient?.status === 'awaiting' ? <Tag severity="warning" value={patient?.status} rounded></Tag> : <Tag severity="success" value="consult" rounded></Tag>}
+                {patient?.status === 'consulted' ? <Tag severity="success" value={patient?.status} rounded></Tag> : <Tag severity="warning" value="awaiting" rounded></Tag>}
               </div>
               <div className="text-start">
                 <Link to={"/patient/" + patient.id}>

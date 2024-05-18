@@ -6,7 +6,8 @@ import GoogleAuthButton from "../social-auth-buttons/googleAuthButton";
 import {signInUserWithPassword} from "../../services/authService/authService";
 import {Toast} from "primereact/toast";
 import {useRef} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {getPersonelByEmail} from "../../services/personelService/personelService";
 
 const SignIn = () => {
   const toast = useRef(null);
@@ -18,6 +19,8 @@ const SignIn = () => {
   const onSubmit = async (data) => {
     try {
       await signInUserWithPassword(data.email, data.password);
+      const personel = await getPersonelByEmail(data.email)
+      localStorage.setItem('user', JSON.stringify(personel));
       navigate('/dashboard');
     } catch (e) {
       toast.current.show({ severity: 'error', summary: 'Error Login invalid credentials', detail: e.message });
@@ -48,7 +51,7 @@ const SignIn = () => {
             <a href="/reset-password"> Forgot password ?</a>
           </div>
           <div className="mt-4 text-center">
-            I do not have an Account<a href="!#"> Register </a>
+            I do not have an Account<Link to="/signup"> Register </Link>
           </div>
         </form>
         <div className="text-center font-light py-6">

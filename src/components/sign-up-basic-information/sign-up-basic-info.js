@@ -17,7 +17,7 @@ const SignUpBasicInfo = ({stepper}) => {
 
   const onSubmit = async (data) => {
     try {
-      if (country !== "India") {
+      if (country.name !== "India") {
         data = {...data,country: country.name, isPromoter: true, isSpecailist: false}
       }else {
         data = {...data,country: country.name, isPromoter: false, isSpecailist: true}
