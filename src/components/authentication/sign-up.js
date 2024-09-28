@@ -43,7 +43,7 @@ const SignUp = () => {
             <InputText type="password" className="col-12" placeholder="Password" {...register("password", {required: true})} />
           </div>
           <div>
-            <Button className="col-12" label="Login" type="submit" />
+            <Button className="col-12" label="Sign Up" type="submit" />
           </div>
 
           <div className="mt-4 text-center">

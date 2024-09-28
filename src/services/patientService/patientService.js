@@ -1,4 +1,4 @@
-import {query, addDoc, collection, getFirestore, where, getDocs, doc, getDoc} from "firebase/firestore";
+import {addDoc, collection, doc, getDoc, getDocs, getFirestore, query, updateDoc, where} from "firebase/firestore";
 import app from "../../config/firebaseConfig";
 
 const database = getFirestore(app)
@@ -17,10 +17,10 @@ export const personelPatients = async (referralCode) => {
   return patients;
 }
 
-export const getPatientBySpecialist = async (specialist) => {
+export const getPatientBySpecialist = async (specialistEmail) => {
   const patients = [];
   const patientRef = query(collection(database, "patients"));
-  const q = query(patientRef, where('specialists', 'array-contains-any', specialist));
+  const q = query(patientRef, where('assignedTo', '==', specialistEmail));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     patients.push({id : doc?.id, ...doc.data()})
@@ -36,3 +36,37 @@ export const getPatient = async (patientId) => {
   }
   return null;
 }
+
+export const getAllPatients = async () => {
+  const patients = [];
+  const querySnapshot = await getDocs(collection(database, 'patients'));
+  querySnapshot.forEach(doc => {
+    patients.push({id : doc?.id, ...doc.data()})
+  })
+  return patients;
+}
+
+export const assignPatientToDoctor = async (patientId, doctorEmail) => {
+  const date = new Date()
+  const patientRef = doc(database, "patients", patientId);
+  return await updateDoc(patientRef, {
+    assigned: true,
+    assignedTo: doctorEmail,
+    assignedAt: date.toISOString()
+  });
+}
+
+export const consultPatient = async (patientId, complain, recommendation, specialist) => {
+  const date = new Date()
+  const patientRef = doc(database, "patients", patientId);
+  return await updateDoc(patientRef, {
+    consultedBy: specialist,
+    consultedAt: date.toISOString(),
+    complain: complain,
+    recommendation: recommendation,
+    status: "consulted"
+  });
+}
+
+
+

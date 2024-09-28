@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAsLC4Q0Mg7q4udS2ZbUv8p1MZL8cp4CM4",
-  authDomain: "prohealth-9563b.firebaseapp.com",
-  projectId: "prohealth-9563b",
-  storageBucket: "prohealth-9563b.appspot.com",
-  messagingSenderId: "863643619509",
-  appId: "1:863643619509:web:8212f050ef766573746efc",
-  measurementId: "G-HPENPZ91BN"
+  apiKey: "AIzaSyBQsL3dcaQmgrVgBOWC3ghFP-iiIYEeC5w",
+  authDomain: "prohealth-151b3.firebaseapp.com",
+  projectId: "prohealth-151b3",
+  storageBucket: "prohealth-151b3.appspot.com",
+  messagingSenderId: "29592208019",
+  appId: "1:29592208019:web:8d0e163bcf34bf3be34366",
+  measurementId: "G-0D2J4J8S2Y"
 }
 
 const app = initializeApp(firebaseConfig);

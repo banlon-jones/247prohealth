@@ -11,8 +11,8 @@ const GetStartPage = () => {
       url: "/register/doctor"
     },
     {
-      title: "I'm a Nurse",
-      description: "If you adhere to the credos of Florence Nightingale and are a qualified nurse,",
+      title: "I'm a Health Promoter",
+      description: "All Health practitioners",
       url: "/register/nurse"
     },
   ]

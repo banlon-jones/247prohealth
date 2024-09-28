@@ -1,4 +1,5 @@
 import patientAvatar from "../../assets/images/patient-avatar.png"
+import WhatsappContact from "../whatsapp-contact/whatsapp-contact";
 const PatientCard = ({patient}) => {
   return(
     <div className="p-6 rounded shadow">
@@ -20,6 +21,9 @@ const PatientCard = ({patient}) => {
         </div>
         <div className="py-2">
           Whatsapp : {patient?.contact}
+          <div className="my-4">
+            <WhatsappContact number={patient?.contact} message="Call or message patient"/>
+          </div>
         </div>
         <div className="border-1 border-dashed rounded p-3">
           <h4 className="text-gray-500">

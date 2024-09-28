@@ -1,4 +1,4 @@
-import { getDoc, getFirestore, updateDoc, doc, setDoc} from "firebase/firestore";
+import {getDoc, getFirestore, updateDoc, doc, setDoc, query, collection, where, getDocs} from "firebase/firestore";
 import app from "../../config/firebaseConfig";
 import {UniqueCharOTP} from "unique-string-generator";
 import {getAuth} from "firebase/auth";
@@ -35,6 +35,17 @@ export const getReferralCode = async (personelEmail) => {
     await updatePersonel({referralLink: code}, getAuth(app).currentUser?.email);
     return code;
   }
+}
+
+export const getAllSpecialist = async () => {
+  const specialists = [];
+  const specialistRef = query(collection(database, "doctors"));
+  const q = query(specialistRef, where('isSpecailist', "==", true));
+  const querySnapShot = await getDocs(q)
+  querySnapShot.forEach(doc => {
+    specialists.push({id : doc?.id, ...doc.data()});
+  })
+  return specialists;
 }
 
 /*

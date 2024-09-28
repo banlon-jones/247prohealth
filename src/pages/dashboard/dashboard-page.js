@@ -6,9 +6,10 @@ import {getAuth} from "firebase/auth";
 import app from "../../config/firebaseConfig";
 import {getReferralCode} from "../../services/personelService/personelService";
 import {useEffect, useState} from "react";
-import {getPatientBySpecialist, personelPatients} from "../../services/patientService/patientService";
+import {getAllPatients, getPatientBySpecialist, personelPatients} from "../../services/patientService/patientService";
 import ListPatients from "../../components/patients/list-patients";
 import {Dialog} from "primereact/dialog";
+import {ADMINS} from "../../constants/administrators";
 
 const DashboardPage = () => {
   const [patients, setPatients] = useState([]);
@@ -28,22 +29,29 @@ const DashboardPage = () => {
 
   const getUser = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user?.specialties){
+    if (user?.isSpecailist){
       setVisible(true);
     }
     setUser(user)
   }
   const getPatients = async () => {
-      const code = await getReferralCode(getAuth(app)?.currentUser?.email);
-      const pats = await personelPatients(code);
-      setPatients(pats);
+    const code = await getReferralCode(getAuth(app)?.currentUser?.email);
+    let pats = [];
+    if (ADMINS.includes(getAuth(app)?.currentUser?.email)){
+      pats = await getAllPatients();
+    }else {
+      pats = await personelPatients(code);
+    }
+    setPatients(pats);
   }
 
   const getSpecialistPat = async () => {
-    console.log(user?.specialties);
     setVisible(false)
-    const pat = await getPatientBySpecialist(user?.specialties);
-    setPatients(pat);
+    if (user.isSpecailist) {
+      const pat = await getPatientBySpecialist(user?.email);
+      setPatients(pat);
+    }
+
   }
   return (
     <>
@@ -67,8 +75,11 @@ const DashboardPage = () => {
         </div>
       </div>}
       <div className="container">
-        {(patients.length === 0) && <h3 className="text-gray-500">
+        {(patients.length === 0 && user.isPromoter) && <h3 className="text-gray-500">
           Your patient list is empty "click + add patient" to add a patient
+        </h3>}
+        {(patients.length === 0 && user.isSpecailist) && <h3 className="text-gray-500">
+          Your patient list is empty a patient will be assigned you
         </h3>}
         {patients && <ListPatients patients={patients} />}
       </div>

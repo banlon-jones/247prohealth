@@ -5,6 +5,7 @@ import {Button} from "primereact/button";
 import {Tag} from "primereact/tag";
 import {useNavigate} from "react-router-dom";
 import hiamsLogo from "../../assets/images/hiams-logo.png"
+import WhatsappContact from "../../components/whatsapp-contact/whatsapp-contact";
 const Home = () => {
   const navigate = useNavigate();
   return(
@@ -31,6 +32,9 @@ const Home = () => {
               <div>
                 <Button label="Consult a Specialist Abroad for FREE" size="large" onClick={()=> {navigate("/new-patient/create")}}/>
               </div>
+              <div className="mt-4">
+                <WhatsappContact number="+2349067545922" message="contact support for more imformation" />
+              </div>
             </div>
             <div>
               <img src={heroImg} className="img-fluid rounded-3 shadow mt-4" alt="successful medical team" width="500px"/>
@@ -38,6 +42,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+
       <div>
         <div className="p-8 bg-primary">
           <div className="flex flex-row flex-wrap justify-content-between">
