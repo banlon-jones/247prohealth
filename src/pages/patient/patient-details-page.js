@@ -6,8 +6,11 @@ import {getPatient} from "../../services/patientService/patientService";
 import {useEffect, useState} from "react";
 import AssignmentModal from "../../components/assignmentModal/assignmentModal";
 import ConsultationModel from "../../components/consultationModal/consultationModel";
+import {useTranslation} from "react-i18next";
 
 const PatientDetailsPage = () => {
+  const { t, i18n } = useTranslation();
+
   const {patient_id} = useParams();
   const [patient, setPatient] = useState({})
   const navigate = useNavigate();
@@ -29,7 +32,7 @@ const PatientDetailsPage = () => {
       <div className="container my-2">
         <div className="rounded p-1 text-start shadow-1">
           <Button text onClick={() => navigate(-1)}>
-            Back to Dashboard
+            {t('back_dash')}
           </Button>
         </div>
       </div>
@@ -39,7 +42,7 @@ const PatientDetailsPage = () => {
         </div>
         <div className="col-12 md:col-8">
           <div className="flex flex-row justify-content-between">
-            <h2> Patient Details </h2>
+            <h2>{t('patient_details')}</h2>
             {!JSON.parse(localStorage.getItem('user')).isPromoter && <div className="flex flex-row">
               <div className="mx-3">
                 <AssignmentModal patientId={patient_id} getPatientDetails={getPatientDetails}/>
@@ -51,12 +54,12 @@ const PatientDetailsPage = () => {
           </div>
           {!patient.consultedBy && <div className="my-4">
             <p className="text-start">
-              this patient is assigned to {patient.assignedTo} at {patient?.assignedAt}
+              {t('assigned_to')} {patient.assignedTo} {t('at')} {patient?.assignedAt}
             </p>
           </div>}
           {patient.consultedBy && <div className="text-start">
             <small className="text-start">
-              this patient was consulted by Doc. {patient.consultedBy.firstName} {patient.consultedBy.lastName} at {patient.consultedAt}
+              {t('consulted_by')} {patient.consultedBy.firstName} {patient.consultedBy.lastName} at {patient.consultedAt}
             </small>
           </div>}
           <div className="mt-3">
@@ -69,7 +72,7 @@ const PatientDetailsPage = () => {
           {patient.complain && <div className="mt-3">
             <div className="text-start shadow p-4 rounded">
               <div>
-                <h3>Complain</h3>
+                <h3>{t('complain')}</h3>
               </div>
               <p className="line-height-4">
                 {patient.complain}
@@ -79,7 +82,7 @@ const PatientDetailsPage = () => {
           {patient.recommendation && <div className="mt-3">
             <div className="text-start shadow p-4 rounded">
               <div>
-                <h3>Doctor's Recommendation</h3>
+                <h3>{t('doc_recom')}</h3>
               </div>
               <p className="line-height-4">
                 {patient.recommendation}

@@ -1,8 +1,11 @@
 import MainNavbar from "../../components/navbar/main-navbar";
 import SignIn from "../../components/authentication/sign-in";
 import hero from "../../assets/images/successful-medical-team.jpg"
+import {useTranslation} from "react-i18next";
 
 const SigninPage = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <div>
       <MainNavbar />
@@ -16,7 +19,7 @@ const SigninPage = () => {
                     <SignIn />
                   </div>
                   <div>
-                    <small className="rounded-pill p-3 shadow"> get help, Contact support </small>
+                    <small className="rounded-pill p-3 shadow">{t('get_help')}</small>
                   </div>
                 </div>
               </div>

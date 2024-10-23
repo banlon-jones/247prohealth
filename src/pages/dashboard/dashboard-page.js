@@ -53,15 +53,17 @@ const DashboardPage = () => {
     }
 
   }
+  const { t, i18n } = useTranslation();
+
   return (
     <>
       <div>
         <DashboardNavBar />
       </div>
       <div className="card flex justify-content-center">
-        <Dialog header={`Welcome, Doctor ${user?.firstName}`} visible={visible} style={{ width: '50vw' }} onHide={getSpecialistPat}>
+        <Dialog header={t('welcome_doc') ` ${user?.firstName}`} visible={visible} style={{ width: '50vw' }} onHide={getSpecialistPat}>
           <p className="m-0">
-            We are delighted to have you as a part of our community. Feel free to discover, interact, and collaborate with us to create something wonderful."
+            {t('we_delighted')}
           </p>
           <div className="text-center mt-3">
             <Button label="OK" severity="primary" onClick={getSpecialistPat}/>
@@ -70,16 +72,16 @@ const DashboardPage = () => {
       </div>
       { user.isPromoter && <div className="pt-5 container text-end">
         <div className="flex flex-row justify-content-end">
-          <Button label="Add Patient" severity="primary" onClick={addPatient}/>
+          <Button label={t('add_patient')} severity="primary" onClick={addPatient}/>
           <GenerateReferralLink />
         </div>
       </div>}
       <div className="container">
         {(patients.length === 0 && user.isPromoter) && <h3 className="text-gray-500">
-          Your patient list is empty "click + add patient" to add a patient
+          {t("patient_list_add_patient")}
         </h3>}
         {(patients.length === 0 && user.isSpecailist) && <h3 className="text-gray-500">
-          Your patient list is empty a patient will be assigned you
+          {t("patient_list_empty")}
         </h3>}
         {patients && <ListPatients patients={patients} />}
       </div>

@@ -6,8 +6,11 @@ import {registerNewPersonel} from "../../services/personelService/personelServic
 import {countries} from "../../constants/specialties";
 import {Dropdown} from "primereact/dropdown";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 const SignUpBasicInfo = ({stepper}) => {
+  const { t, i18n } = useTranslation();
+
   const [country, setCountry] = useState()
   const {
     register,
@@ -34,32 +37,32 @@ const SignUpBasicInfo = ({stepper}) => {
       <div className="text-start">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="py-2">
-            <label>First name</label>
-            <InputText placeholder="First Name" className="w-full" {...register("firstName", {required: true})}/>
-            { errors.firstName && <small className="text-danger">email is Required</small>}
+            <label>{t('first_name')}</label>
+            <InputText placeholder={t('last_name')} className="w-full" {...register("firstName", {required: true})}/>
+            { errors.firstName && <small className="text-danger">{t('fname_req')}</small>}
           </div>
           <div className="py-2">
-            <label>Last Name</label>
-            <InputText placeholder="Last Name" className="w-full" {...register("lastName", {required: true})}/>
-            { errors.lastName && <small className="text-danger">last name is Required</small>}
+            <label>{t('last_name')}</label>
+            <InputText placeholder={t('last_name')} className="w-full" {...register("lastName", {required: true})}/>
+            { errors.lastName && <small className="text-danger">{t('lname_req')}</small>}
           </div>
           <div className="py-2">
-            <label>Date of Birth</label>
-            <Calendar placeholder="Date of Birth" dateFormat="dd/mm/yy" className="w-full" {...register("dateOfBirth", {required: true})} />
-            { errors.dateOrBirth && <small className="text-danger">date of birth is Required</small>}
+            <label>{t('date_of_birth')}</label>
+            <Calendar placeholder={t('date_of_birth')} dateFormat="dd/mm/yy" className="w-full" {...register("dateOfBirth", {required: true})} />
+            { errors.dateOrBirth && <small className="text-danger">{t('dob_req')}</small>}
           </div>
           <div className="py-2">
-            <label>Country</label>
+            <label>{t('country')}</label>
             <Dropdown value={country} onChange={(e) => setCountry(e.value)} options={countries} optionLabel="name"
-                      placeholder="Country" className="w-full" />
+                      placeholder={t('country')} className="w-full" />
           </div>
           <div className="py-2">
-            <label>Address</label>
-            <InputText placeholder="Address" className="w-full" {...register("address", {required: true})}/>
-            { errors.lastName && <small className="text-danger">address is Required</small>}
+            <label>{t('address')}</label>
+            <InputText placeholder={t('address')} className="w-full" {...register("address", {required: true})}/>
+            { errors.lastName && <small className="text-danger">{t('address_Req')}</small>}
           </div>
           <div className="py-2">
-            <Button label="Save and Continue"  type="submit" />
+            <Button label={t("save_and_cont")}  type="submit" />
           </div>
         </form>
       </div>

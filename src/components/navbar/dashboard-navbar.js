@@ -9,8 +9,11 @@ import {Menu} from "primereact/menu";
 import {logOut} from "../../services/authService/authService";
 import app from "../../config/firebaseConfig";
 import {getAuth} from "firebase/auth";
+import {useTranslation} from "react-i18next";
+
 
 const DashboardNavBar = () => {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const toast = useRef(null);
   const menuLeft = useRef(null);
@@ -23,11 +26,11 @@ const DashboardNavBar = () => {
 
   const menuItems = [
     {
-      label: 'Profile',
+      label: t('profile'),
       url: '/'
     },
     {
-      label: 'logout',
+      label: t('logout'),
       command: () => {
         logout()
       }

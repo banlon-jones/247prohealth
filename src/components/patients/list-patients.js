@@ -2,9 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import { Tag } from "primereact/tag"
+import {useTranslation} from "react-i18next";
 
 
 const ListPatients = ({patients}) => {
+  const { t, i18n } = useTranslation();
+
   return(
     <>
       <div>
@@ -15,31 +18,31 @@ const ListPatients = ({patients}) => {
                 <div>
                   <strong>{patient?.firstName}</strong>
                 </div>
-                <small className="text-gray-700">First Name</small>
+                <small className="text-gray-700">{t('first_name')}</small>
               </div>
               <div className="text-start">
                 <div>
                   <strong>{patient?.lastName}</strong>
                 </div>
-                <small className="text-gray-700">Last Name</small>
+                <small className="text-gray-700">{t('last_name')}</small>
               </div>
               <div className="text-start hide-sm">
                 <div>
                   <strong>{patient?.contact}</strong>
                 </div>
-                <small className="text-gray-700">Phone</small>
+                <small className="text-gray-700">{t('phone')}</small>
               </div>
               <div className="text-start hide-sm">
                 <div>
                   <strong>{patient.address.country}</strong>
                 </div>
-                <small className="text-gray-700">Country</small>
+                <small className="text-gray-700">{t('country')}</small>
               </div>
               <div className="text-start hide-sm">
                 <div>
                   <strong>{patient.address.town}</strong>
                 </div>
-                <small className="text-gray-700">City/Town</small>
+                <small className="text-gray-700">{t('town')}</small>
               </div>
               <div>
                 {patient?.status === 'consulted' ? <Tag severity="success" value={patient?.status} rounded></Tag> : <Tag severity="warning" value="awaiting" rounded></Tag>}

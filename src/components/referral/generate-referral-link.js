@@ -7,6 +7,8 @@ import app from "../../config/firebaseConfig";
 import {Link} from "react-router-dom";
 
 const GenerateReferralLink = () => {
+  const { t, i18n } = useTranslation();
+
   const [visible, setVisible] = useState(false);
   const [referral_code, setReferral_code] = useState('');
   const referralLink = async () => {
@@ -16,11 +18,11 @@ const GenerateReferralLink = () => {
   return (
     <div>
       <Button className="mx-3" severity="secondary" onClick={() => {setVisible(true); referralLink()}}>
-        Generate Referral Link
+        {t('gen_ref_link')}
       </Button>
       <Dialog header="Referral Link" visible={visible} style={{ width: '90vw' }} onHide={() => setVisible(false)}>
         <p className="m-0">
-          copy your referral link and share <br/>
+          {t('copy_ref_link')} <br/>
           <Link className="pt-2" to={"/new-patient/" + referral_code} target="_blank"> {window.location.origin}/new-patient/{referral_code} </Link>
         </p>
       </Dialog>

@@ -1,8 +1,11 @@
 import MainNavbar from "../../components/navbar/main-navbar";
 import hero from "../../assets/images/successful-medical-team.jpg";
 import SignUp from "../../components/authentication/sign-up";
+import {useTranslation} from "react-i18next";
 
 const SignupPage = () => {
+  const { t, i18n } = useTranslation();
+
   return(
     <>
       <div>
@@ -17,7 +20,7 @@ const SignupPage = () => {
                       <SignUp />
                     </div>
                     <div>
-                      <small className="rounded-pill p-3 shadow"> get help, Contact support </small>
+                      <small className="rounded-pill p-3 shadow">{t('get_help')}</small>
                     </div>
                   </div>
                 </div>
