@@ -6,8 +6,12 @@ import {getAllSpecialist} from "../../services/personelService/personelService";
 import {ConfirmDialog, confirmDialog} from "primereact/confirmdialog";
 import {Toast} from "primereact/toast";
 import {assignPatientToDoctor} from "../../services/patientService/patientService";
+import {useTranslation} from "react-i18next";
+
 
 const AssignmentModal = ({patientId, getPatientDetails}) => {
+  const { t, i18n } = useTranslation();
+
   const toast = useRef(null);
   const [assignmentModalvisible, setAssignmentModalvisible] = useState(false);
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
@@ -37,7 +41,7 @@ const AssignmentModal = ({patientId, getPatientDetails}) => {
 
   const assignmentConfirmation = () => {
     confirmDialog({
-      message: 'Are you sure you want to assign patient to specialist?',
+      message: t('are_you_sure_pat'),
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       defaultFocus: 'accept',
@@ -50,14 +54,14 @@ const AssignmentModal = ({patientId, getPatientDetails}) => {
     <>
       <Toast ref={toast} />
       <ConfirmDialog />
-      <Button severity="primary" onClick={showModal}> Assign to Doctor </Button>
-      <Dialog header="Asign Patient to Doctor" visible={assignmentModalvisible} style={{ width: '50vw' }} onHide={() => {if (!assignmentModalvisible) return; setAssignmentModalvisible(false); }}>
+      <Button severity="primary" onClick={showModal}> {t('assign_doc')} </Button>
+      <Dialog header={t('assign_pat_doc')} visible={assignmentModalvisible} style={{ width: '50vw' }} onHide={() => {if (!assignmentModalvisible) return; setAssignmentModalvisible(false); }}>
         <p className="m-0">
           <Dropdown value={selectedSpecialist} onChange={(e) => setSelectedSpecialist(e.value)} options={specialists} optionLabel={"firstName"}
-                    placeholder="Select a Doctor" className="w-full" />
+                    placeholder={t('select_doc')} className="w-full" />
         </p>
         <div className="mt-4">
-          <Button onClick={assignmentConfirmation} label="Assign"></Button>
+          <Button onClick={assignmentConfirmation} label={t('assign')}></Button>
         </div>
       </Dialog>
     </>

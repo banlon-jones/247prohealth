@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const WhatsappContact = ({number, message}) => {
+
   const hreflink = `https://api.whatsapp.com/send?phone=${encodeURIComponent(number)}`
   return (
     <>

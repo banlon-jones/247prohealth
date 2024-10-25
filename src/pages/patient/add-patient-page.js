@@ -15,8 +15,11 @@ import {Calendar} from "primereact/calendar";
 import {countries, specialties} from "../../constants/specialties";
 import {Dropdown} from "primereact/dropdown";
 import {MultiSelect} from "primereact/multiselect";
+import {useTranslation} from "react-i18next";
+
 
 const AddPatientPage = () => {
+  const { t, i18n } = useTranslation();
   const [specialist, setSpecialist] = useState(null);
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
@@ -36,7 +39,7 @@ const AddPatientPage = () => {
       const patient = {
         ...data,
         specialists: specialist.map((item) => item.name),
-        status: 'awaiting',
+        status: t('awaiting'),
         dob: dat.toISOString(),
         address: {
           country: selectedCountry?.name,
@@ -64,80 +67,80 @@ const AddPatientPage = () => {
       {auth?.currentUser?.email ? <DashboardNavBar /> : <MainNavbar />}
       <div>
         <h2>
-          Patient Sign Up
+          {t('patient_signup')}
         </h2>
         <div className="py-6 mx-5 text-start">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="my-3">
-              <label>First Name</label>
-              <InputText type="text" placeholder="First Name" className="col-12" {...register("firstName", {required: true})} />
-              {errors.firstName &&<small className="text-danger">name is Required</small>}
+              <label>{t('first_name')}</label>
+              <InputText type="text" placeholder={t('first_name')} className="col-12" {...register("firstName", {required: true})} />
+              {errors.firstName &&<small className="text-danger">{t('name_req')}</small>}
             </div>
             <div className="mb-3">
-              <label>Last Name</label>
-              <InputText type="text" className="col-12" placeholder="Last Name" {...register("lastName", {required: true})} />
-              { errors.lastName && <small className="text-danger">name is Required</small>}
+              <label>{t('last_name')}</label>
+              <InputText type="text" className="col-12" placeholder={t('last_name')} {...register("lastName", {required: true})} />
+              { errors.lastName && <small className="text-danger">{t('name_req')}</small>}
             </div>
             <div className="mb-3">
-              <label>Date of Birth</label>
-              <Calendar className="w-full" placeholder="Date of Birth" {...register("dateOfBirth", {required: true})} />
+              <label>{t('date_of_birth')}</label>
+              <Calendar className="w-full" placeholder={t('date_of_birth')} {...register("dateOfBirth", {required: true})} />
             </div>
             <div className="my-3">
-              <label>Email</label>
-              <InputText type="email" placeholder="Email" className="col-12" {...register("email", {required: false})} />
+              <label>{t('Email')}</label>
+              <InputText type="email" placeholder={t('Email')} className="col-12" {...register("email", {required: false})} />
             </div>
             <div className="mb-3">
-              <label>Whatsapp contact</label>
-              <InputText type="tel" className="col-12" placeholder="Example +237 670070070" {...register("contact", {required: true})} />
-              { errors.contact && <small className="text-danger">whatsapp contact is Required</small>}
+              <label>{t('Whatsapp_contact')}</label>
+              <InputText type="tel" className="col-12" placeholder={t('example'+ "+237 670070070")} {...register("contact", {required: true})} />
+              { errors.contact && <small className="text-danger">{t('wha_req')}</small>}
             </div>
             <div className="mb-3 p-5 border-1 rounded border-dashed">
               <h3>
-                Patient's Address
+                {t('pat_address')}
               </h3>
-              <small className="text-gray-600"> Enter patients current Address</small>
+              <small className="text-gray-600">{t('enter_pat')}</small>
               <div className="my-3">
-                <label>Country</label>
+                <label>{t('country')}</label>
                 <div>
                   <Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name"
-                            placeholder="Select your country" className="w-full" />
+                            placeholder={t('select_country')} className="w-full" />
                 </div>
               </div>
               <div className="my-3">
-                <label>Town</label>
-                <InputText type="text" className="col-12" placeholder="town" {...register("town", {required: true})} />
-                { errors.town && <small className="text-danger">town is Required</small>}
+                <label>{t('town')}</label>
+                <InputText type="text" className="col-12" placeholder={t('town')} {...register("town", {required: true})} />
+                { errors.town && <small className="text-danger">{t('town_req')}</small>}
               </div>
             </div>
             <div className="my-3">
-              <label>Describe Signs and Symptoms</label>
+              <label>{t('desc_signs_and_sypms')}</label>
               <div>
                 <InputTextarea className="col-12" {...register("description", {required: true})} rows={5} cols={30} />
               </div>
-              { errors.description && <small className="text-danger">address is Required</small>}
+              { errors.description && <small className="text-danger">{t('address_Req')}</small>}
             </div>
             <div className="py-2">
-              <label> Consult Specialist <small>(3 max)</small></label>
+              <label> {t('Consult_Spec')} <small>(3 max)</small></label>
               <MultiSelect value={specialist} onChange={(e) => setSpecialist(e.value)} options={specialties} optionLabel="name" display="chip"
-                           placeholder="Select your specialties" maxSelectedLabels={3} className="w-full" filter />
+                           placeholder={t("slec_spec")} maxSelectedLabels={3} className="w-full" filter />
 
             </div>
             <div>
-              <Button label="Save and Continues" type="submit" />
+              <Button label={t('save_and_cont')} type="submit" />
             </div>
           </form>
         </div>
       </div>
       <div>
-        <Dialog header="Patient Successfully added" visible={visible} style={{ width: '90vw' }} onHide={() => handleOkClick()}>
+        <Dialog header={t('pat_success_add')} visible={visible} style={{ width: '90vw' }} onHide={() => handleOkClick()}>
           <div className="text-center">
             <div>
               <img className="img-fluid" src={imgUrl} alt="flat doc" />
             </div>
             <div>
-              Your patient record has been successfully created <br/>
-              <strong>your Patient ID: {patientId}</strong><br/>
-              Our specialists will reach out to you shortly
+              {t('patient_rec')}<br/>
+              <strong>{t('your_patient')}: {patientId}</strong><br/>
+              {t('our_spec')}
             </div>
             <div className="text-center p-5">
               <Button label="Confirm" severity="primary" onClick={() => handleOkClick()} />
