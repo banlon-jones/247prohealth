@@ -10,6 +10,7 @@ import {getAllPatients, getPatientBySpecialist, personelPatients} from "../../se
 import ListPatients from "../../components/patients/list-patients";
 import {Dialog} from "primereact/dialog";
 import {ADMINS} from "../../constants/administrators";
+import {useTranslation} from "react-i18next";
 
 const DashboardPage = () => {
   const [patients, setPatients] = useState([]);

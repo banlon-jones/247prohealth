@@ -5,6 +5,7 @@ import { getReferralCode } from "../../services/personelService/personelService"
 import {getAuth} from "firebase/auth";
 import app from "../../config/firebaseConfig";
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const GenerateReferralLink = () => {
   const { t, i18n } = useTranslation();
