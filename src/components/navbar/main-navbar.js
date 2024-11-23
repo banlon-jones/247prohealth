@@ -46,10 +46,16 @@ const MainNavbar = () => {
               </Button>
               247<span className="text-primary">PRO</span>HEALTH
             </div>
+            <div className="mt-4">
+              <Button label={t('signup')} className="mx-auto" onClick={() => navigate("/signup")}/>
+              <Button label={t('login')} className="" onClick={() => navigate("/signin")} outlined/>
+            </div>
           </div>
-          <div>
-            <Button label={t('signup')} className="mx-2" onClick={() => navigate("/signup")}/>
-            <Button label={t('login')} onClick={() => navigate("/signin")} outlined/>
+          <div className="">
+            <ButtonGroup>
+              <Button onClick={() => changeLanguage('en')} label="EN"/>
+              <Button outlined onClick={() => changeLanguage('fr')} label="FR"/>
+            </ButtonGroup>
           </div>
         </div>
       </div>
